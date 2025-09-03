@@ -27,7 +27,7 @@ N -510 -30 -510 60 {lab=iref}
 N -510 -10 -450 -10 {lab=iref}
 N -450 -60 -450 -10 {lab=iref}
 C {gnd.sym} -260 150 0 0 {name=l1 lab=GND}
-C {devices/code.sym} -710 -265 0 0 {name=TT_MODELS
+C {devices/code.sym} -740 -215 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -36,7 +36,7 @@ value="
 
 "
 spice_ignore=false}
-C {code_shown.sym} 45 -255 0 0 {name=SPICE only_toplevel=false value=
+C {code_shown.sym} 25 -195 0 0 {name=SPICE only_toplevel=false value=
 "
 .option temp=27
 .option gmin = 1e-12
