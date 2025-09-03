@@ -33,10 +33,12 @@ C {code_shown.sym} 15 -185 0 0 {name=SPICE only_toplevel=false value=
 "
 .option temp=27
 .option gmin = 1e-12
+.param vbias=0.7723
 
 vdd vdd 0 1.8
-*vin vin 0 dc 0.753 ac 0.1
-vin vin 0 dc 0.753 ac 0.01 0 SIN(0.753 0.01 100k)
+*vin vin 0 dc \{vbias\} ac 0.1
+vin vin 0 dc \{vbias\} ac 0.01 0 SIN(\{vbias\} 0.01 100k)
+iref iref 0 dc 0.5m
 
 .dc vin 0 1.8 10m
 .ac dec 10 10 200Meg
@@ -68,9 +70,9 @@ C {iopin.sym} -270 -200 2 0 {name=p3 lab=vdd}
 C {sky130_fd_pr/cap_mim_m3_1.sym} -110 70 0 0 {name=C1 model=cap_mim_m3_1 W=40 L=87 MF=1 spiceprefix=X}
 C {gnd.sym} -110 150 0 0 {name=l2 lab=GND}
 C {gnd.sym} -240 120 0 0 {name=l3 lab=GND}
-C {vsource.sym} -360 -90 0 0 {name=V1 value=1.3 savecurrent=false}
+C {vsource.sym} -360 -90 0 0 {name=V1 value=1.26 savecurrent=false}
 C {sky130_fd_pr/pfet_01v8.sym} -290 -60 0 0 {name=M2
-W=170
+W=161
 L=1
 nf=1
 mult=1
@@ -84,7 +86,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/nfet_01v8.sym} -290 90 0 0 {name=M1
-W=120
+W=70
 L=1
 nf=1 
 mult=1
