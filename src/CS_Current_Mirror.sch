@@ -40,11 +40,12 @@ C {code_shown.sym} 25 -195 0 0 {name=SPICE only_toplevel=false value=
 "
 .option temp=27
 .option gmin = 1e-12
+.param vbias = 0.7172
 
 vdd vdd 0 1.8
-*vin vin 0 dc 0.753 ac 0.1
-vin vin 0 dc 0.753 ac 0.01 0 SIN(0.753 0.01 100k)
-iref iref 0 dc 0.5m
+*vin vin 0 dc \{vbias\} ac 0.1
+vin vin 0 dc \{vbias\} ac 0.01 0 SIN(\{vbias\} 0.01 100k)
+iref iref 0 dc 0.327m
 
 .dc vin 0 1.8 10m
 .ac dec 10 10 200Meg
