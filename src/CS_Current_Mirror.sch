@@ -1,17 +1,17 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.2}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N -260 0 -160 0 {lab=vout}
 N -360 90 -300 90 {lab=vin}
-N -260 120 -260 150 {lab=GND}
-N -100 100 -100 150 {lab=GND}
+N -260 120 -260 150 {lab=vss}
 N -160 0 -70 0 {lab=vout}
 N -100 0 -100 40 {lab=vout}
-N -230 90 -230 120 {lab=GND}
-N -260 90 -230 90 {lab=GND}
+N -230 90 -230 120 {lab=vss}
+N -260 90 -230 90 {lab=vss}
 N -260 -30 -260 60 {lab=vout}
 N -260 -60 -240 -60 {lab=vdd}
 N -240 -100 -240 -60 {lab=vdd}
@@ -26,7 +26,9 @@ N -470 -60 -300 -60 {lab=iref}
 N -510 -30 -510 60 {lab=iref}
 N -510 -10 -450 -10 {lab=iref}
 N -450 -60 -450 -10 {lab=iref}
-C {gnd.sym} -260 150 0 0 {name=l1 lab=GND}
+N -100 100 -100 140 {lab=vss}
+N -260 140 -100 140 {lab=vss}
+N -230 120 -230 140 {lab=vss}
 C {devices/code.sym} -740 -215 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -40,8 +42,9 @@ C {code_shown.sym} 25 -195 0 0 {name=SPICE only_toplevel=false value=
 "
 .option temp=27
 .option gmin = 1e-12
-.param vbias = 0.7172
+.param vbias = 0.7180
 
+vss vss 0 0
 vdd vdd 0 1.8
 *vin vin 0 dc \{vbias\} ac 0.1
 vin vin 0 dc \{vbias\} ac 0.01 0 SIN(\{vbias\} 0.01 100k)
@@ -75,12 +78,10 @@ C {ipin.sym} -360 90 0 0 {name=p1 lab=vin}
 C {opin.sym} -70 0 0 0 {name=p2 lab=vout}
 C {iopin.sym} -390 -160 3 0 {name=p3 lab=vdd}
 C {sky130_fd_pr/cap_mim_m3_1.sym} -100 70 0 0 {name=C1 model=cap_mim_m3_1 W=40 L=87 MF=1 spiceprefix=X}
-C {gnd.sym} -100 150 0 0 {name=l2 lab=GND}
-C {gnd.sym} -230 120 0 0 {name=l3 lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} -280 -60 0 0 {name=M2
 W=170
 L=1
-nf=1
+nf=15
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
@@ -94,7 +95,7 @@ spiceprefix=X
 C {sky130_fd_pr/nfet_01v8.sym} -280 90 0 0 {name=M1
 W=120
 L=1
-nf=1 
+nf=12
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
@@ -108,7 +109,7 @@ spiceprefix=X
 C {sky130_fd_pr/pfet_01v8.sym} -490 -60 0 1 {name=M3
 W=170
 L=1
-nf=1
+nf=15
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
@@ -120,3 +121,4 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {iopin.sym} -510 60 1 0 {name=p4 lab=iref}
+C {iopin.sym} -260 150 1 0 {name=p5 lab=vss}

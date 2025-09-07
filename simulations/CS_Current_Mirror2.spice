@@ -1,9 +1,9 @@
 ** sch_path: /foss/designs/Assignment2/src/CS_Current_Mirror.sch
-*.subckt CS_Current_Mirror vin vout vdd iref
-.ipin vin
-.opin vout
-.iopin vdd
-.iopin iref
+**.subckt CS_Current_Mirror vin vout vdd iref
+*.ipin vin
+*.opin vout
+*.iopin vdd
+*.iopin iref
 XC1 vout GND sky130_fd_pr__cap_mim_m3_1 W=40 L=87 MF=1 m=1
 XM2 vout iref vdd vdd sky130_fd_pr__pfet_01v8 L=1 W=170 nf=15 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
